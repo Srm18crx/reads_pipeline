@@ -58,7 +58,7 @@ cutadapt -g GATTGCGCTGTTATCCCTAG...GCATAGTRGGGTATCTAATCC -o fish_549_trimmed_rev
 
 cat fish_*.fastq > final_reads/reads_fish.fastq
 
-## 5. building consensus sequences 
+## 5. building consensus sequences https://github.com/ksahlin/NGSpeciesID
 conda activate NGSpeciesID
 
 NGSpeciesID --ont --fastq ../reads_metazoan.fastq  --consensus --medaka --abundance_ratio 0.00005 --q 10 --rc_identity_threshold 0.97 --max_seqs_for_consensus 200 --outfolder ./output_metazoan_00005_97_200 --t 48
