@@ -1,8 +1,9 @@
 # ONT-reads
 raw reads analyses
-### input files are in fastq_pass folder. The sample used here is 'edna_549_1'
-### the reads are a mix of 4 different amplicons COI (365), mifish (217 bp), fish_2kb (1974 bp), metazoan_2kb (2290 bp)
 
+input files are in the fastq_pass folder. The sample used here is 'edna_549_1'
+### reads are a mix of 4 different amplicons COI (365), mifish (217 bp), fish_2kb (1974 bp), metazoan_2kb (2290 bp)
+NanoPlot, NanoFilt, Seqkit, NGSpeciesID were installed using conda 
 ## 1. to merge all the fastq.gz files in the fatq_pass folder and gunzip 
 cat fastq_pass/*.fastq.gz > all_reads_549_1.fastq.gz
 
@@ -11,7 +12,7 @@ gunzip all_reads_549_1.fastq.gz
 ## 2. quality check (Nanoplot https://github.com/wdecoster/NanoPlot)
 NanoPlot --fastq all_reads_549_1.fastq -o output_raw_reads
 
-## 3. sorting the reads by length in different files 
+## 3. sorting the reads by length in different files (https://github.com/wdecoster/nanofilt)
 NanoFilt ../all_reads_549_1.fastq -l 198 --maxlength 321 > mifish_reads_length.fastq
 
 NanoFilt ../all_reads_549_1.fastq -l 345 --maxlength 500 > coi_reads_length.fastq
