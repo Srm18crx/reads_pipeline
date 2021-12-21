@@ -59,7 +59,11 @@ cutadapt -g GATTGCGCTGTTATCCCTAG...GCATAGTRGGGTATCTAATCC -o fish_549_trimmed_rev
 cat fish_*.fastq > final_reads/reads_fish.fastq
 
 ## 5. building consensus sequences 
+conda activate NGSpeciesID
+
 NGSpeciesID --ont --fastq ../reads_metazoan.fastq  --consensus --medaka --abundance_ratio 0.00005 --q 10 --rc_identity_threshold 0.97 --max_seqs_for_consensus 200 --outfolder ./output_metazoan_00005_97_200 --t 48
+
+conda deactivate
 
 ## 6. blast consensus sequences
 blastn -query metazoan_consensus.fasta -out output_blast_metazoan.txt -db ~/Desktop/Sara/NCBI_nt_db/nt -outfmt '6 qseqid sseqid pident evalue length mismatch gapopen gaps qstart qend staxids sscinames scomnames sskingdoms stitle' -perc_identity 90 -max_target_seqs 1 -num_threads 24
